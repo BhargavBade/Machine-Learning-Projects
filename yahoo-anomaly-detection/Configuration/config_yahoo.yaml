@@ -1,0 +1,39 @@
+---
+Optimized: 
+  learning_rate: 
+    - float
+    - 0.001
+    - 0.001
+  hidden_size:
+    - categorical
+    - [20]
+
+Data:
+    dataset: yahoo
+    subset: A3
+    task: anomaly
+    batch_size: 64
+    worker: 0
+    scaler: "mean"
+    path: "Datasets"
+    shuffle_train: False
+    
+Study:  
+  number_of_trials: 1
+  direction: minimize
+  optimization_target: TestLoss
+  study_name: VarAutoEncoderStudyofYahooA3_meann_recanmdetc
+
+Network:
+  name: MyVarAutoEncoder
+  act_function: Tanh
+  input_size: 120
+  
+Learning:
+  num_epochs: 5
+  testevery: 1
+  optimizer: Adam
+  scheduler: StepLR
+  scheduler_step: 5
+  gamma: 0.8
+  criterion: MSELoss
